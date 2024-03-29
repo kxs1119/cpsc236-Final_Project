@@ -1,0 +1,129 @@
+Question text,Option A,Option B,Option C,Correct Answer
+What is the tool to install python modules?,pip,pipe,pap,A
+What is the function to get user input?,input(),read(),getText(),A
+How do you add a module to python,add <file>,import <file>,mod <file>,B
+Who created Python?,Guido van Rossum,Bjarne Stroustrup,Brendan Eich,A
+What type of programming language is python?,Logic ,Scripting ,Object-Oriented,C
+Which of these is not a real python package?,pandas,iostream,numpy,B
+What does this code print: print(5.6 % 2 * (3 + 1)),11.2,6.3999999999999,9.2,B
+what type of variable is X:  X = 8.0,string ,integer,float,C
+what type of variable is Y:  Y = 9999999999999999999999999999999,string ,integer,long,C
+When was the original version of python released?,1991,2000,2008,A
+Which operator could make the if statment work: if  x > 4 _____  x == 2,or,&&,||,A
+What funciton makes a string lower case in Python?,toLower(),lower(),lowerCase(),B
+What is the maximum number of parameters in the range function?,4,2,3,C
+Which of the following is a correct for loop in Python?,for i = 0; i < 1; i = i + 1:,for i in range(10):,for i < 10:,B
+Which of the following is a GUI library in Python?,tkinter,swing,gui,A
+Which of the following is not a primitive data type in Python?,Integer,Float,Character,C
+What is the proper way to use the and logical operator in Python?,if i == 4 and j == 4:,if i ==4 && j == 4:,"if and(i == 4, j ==4):",A
+Which of the following is a false boolean in Python?,notTrue = false,notTrue = 0,notTrue = False,C
+How do you cast an integer to a string in Python?,toString(myInt),string(myInt),str(myInt),C
+What does SELECT do in SQL?,Find similarity between two pieces of data.,Find any number of instances with specifications.,Finds only the closest match between two pieces of data.,B
+What does INSERT do in SQL?,Insert a new value if conditions are met.,Inserts a value if not null.,Inserts any value.,C
+What does UPDATE do in SQL?,Updates a value.,Update a relationship.,Both of the other answers are right.,A
+What does DELETE do in SQL?,"Deletes a specific object, but not the relationship.",Deletes a specific object and all relationships,A way to delete all the work you did this session.,A
+What does MATCH do in Neo4j?,Find similarity between two pieces of data.,Find any number of instances with specifications.,Finds only the closest match between two pieces of data.,B
+What does SET do in Neo4j?,Similar to settings option.,Replaces a value.,Can be used to add a new value and replace a value.,C
+"When using the DELETE query in Neo4j, will it also remove the relationship?",TRUE,FALSE,"Not in Neo4j, but in SQL",B
+the ls command in linux lists out the current directory,TRUE,FALSE,,B
+What tool is used to scan for ports in Kali Linux?,HashCat,Nmap,Hydra,B
+What tool is used to crack passwords in Kali Linux?,Wireshark,SQL Injection,Hydra,C
+How do you close a div in HTML?,>div<,</div>,#div#,B
+What does HTML stand for?,Hyper Time Machine Language,High Type Machine Learning,Hypertext Markup Language,C
+Which tag do you start an HTML webpage with?,<Body>,<Head>,<Div>,B
+How do you declare a hyperlink in HTML?,<a href,<a hyperlink,<a website,A
+How do you make text bold in HTML?,<b>,<bold>,<br>,A
+How do you start an ordered list in HTML?,>li<,<li>,<list>,B
+How do you start an unordered list in HTML?,<unol>,<un>,<ul>,C 
+Which HTML tag will give you the largest header?,<h6>,<h3>,<h1>,C
+What is the extension of an HTML file?,.ht,.html,.htm,B
+Which HTML tag will cause a line break?,<br>,<break>,<b>,A
+Which of the following is correct about Python?,It supports automatic garbage collection,"It can be easily integrated with C, C++, COM, ActiveX, CORBA, and Java",Both of the above,C
+Which function can be used on the file to display a dialog for saving a file?,Filename = savefilename(),Filename = asksavefilename(),Fielname = asksaveasfilename(),C
+Which type of Programming does Python support?,object-oriented programming,functional programming,all of the above,C
+Is Python case sensitive when dealing with identifiers?,no,yes,only in specific cases,A
+Who developed the Python language?,Guido van Rossum,Zim Den,Niene Stom,A
+In which year was the Python language developed?,1989,1995,1972,A
+Which of the following data types would you use to store the number 25.62?,str,int,float,C
+What data type must be used for 26.57?,Float,Double,Long,A
+How many decimal points does the round function round to?,0,1,2,A
+An integer must be casted to a string to be printed (T/F),TRUE,FALSE,,A
+How do you break out of a loop?,Break,Exit,MoveOn,A
+What is the representation of a specific value?,Static,Literal,Variable,B
+What library can PI be accessed with?,Calc,Math,Geometry,B
+The boolean operator that returns true if its single operand are true?,AND,NOT,OR,B
+What is the latest version of Python?,3.10.2,4.2.3,3.9.1,A
+When did the latest version of Python come out?,"February 2, 2021","February 1, 2022","October 4, 2021",C
+Which of the following data types is NOT in Python?,float,int,double,C
+True or False: Python requires you to specify the kind of value a function returns (or null for none),TRUE,FALSE,,B
+Which variable type should data be in before being written to a file?,float,string,int,B
+True or False: You can iterate through the characters in a string with a for loop.,TRUE,FALSE,,A
+What is the syntax for slicing a string?,string[start:end:stop],"string.slice(start, end)",newString = string / 2,A
+How should you search a string for certain values?,use the in keyword,there is no way to search a string,use a nested loop to compare each character,A
+What is the syntax for converting a string to all lowercase?,lower(string),string.lower(),string = lower(string),B
+True or False: a while statement keeps running while it is true,TRUE,FALSE,BOTH,A
+What do Mutator methods do that Accessor methods do not do?,Change value of attribute,moves value of attribute,neither,A
+When you pass an object as an argument what are you actually passing?,the actual object,reference to the object,both,B
+Which function is non-mutable,list,tuple,both A and B,B
+how would you create a tuple in a program?,mytuple = (),mytuple = [],mytuple = {},A
+how would you create a list in a program?,mylist = (),mylist = [],mylist = {},B
+What does print(file.read((10)),read the first 10 lines,read the first 10 characters,read the first 10 words,B
+How do you create a new Dictionary to a program?,mydictionary = (),mydictionary = [],mydictionary = {},C
+True or False: Elements in a dictionary are sorted,TRUE,FALSE,,B
+What is a list?,Text string,Single value,Collection of values,C
+What is a for loop?,Skips code block,Breaks code block,Iterates code block,C
+What does if statement do?,Avoids code block,Executes code block,Returns code block,B
+What is a function?,Reusable code block,Irreusable code block,Permanent code block,A
+What is a variable?,Anonymous value holder,Named value holder,Value less holder,B
+What is a string?,Numeric value,Text value,Boolean value,B
+What is a dictionary?,Unsorted list,Sorted list,Key value pairs,C
+What is an exception?,Error in code,No error in code,Warning in code,A
+What is a module?,Exported code file,Imported code file,Unrelated code file,B
+What is the and operator in python?,and,&&,AND,A
+What is the or operator in python?,OR,or,||,B
+How would you round 2.999 to 2 decimal places?,"round(float 2.99, 2)","round(2, 2.999)","round(2.999, 2)",C
+Which is an int value?,1.9,2.5,5,C
+Which langauge typically takes the least time to develop a program?,Java,Python,C++,B
+What keyword begins a python function block?,def,function,fn,A
+How do you type out a comment in python?,//,#,!,B
+Which is not a data type in python?,char,bool,list,A
+What is a difference between tuples and lists?,Lists are mutable while tuples are immutable,Nothing,Lists are faster,A
+Which is not a keyword in Python,if,break,deal,C
+How do you access an element of a list in Python by its index?,list(index),list{index},list[index],C
+What type of data structure is used to store a collection of items in Python?,Tuple,List,Dictionary,B
+What is the correct syntax for an if statement in Python?,if x = 10 then,if (x == 10),if x == 10:,C
+What langauge is Python built on?,C,C++,Java,B
+What are dictionaries most similar to in other languages?,hashsets,arrays,vectors,A
+What does the != operator mean in Python?,Greater than or equal to ,Equal to,Not equal to,C
+What function allows you to grab data from a user in Python?,input(),get(),data(),A
+Which data type can either be true or false?,Float,Boolean,String,B
+What are the variables called that are passed into a function?,Parameters,Initializers,Setters,A
+Which of the following Python objects are immutable?,Lists,Tuples,Sets,B
+What operator performs integer division?,/,//,\,B
+What would be the output of print(26 % 12)?,2,0,It would throw an error,A
+What does the multiline continuation character do?,Breaks a statement into multiple lines,Adds a return inbetween lines,Splits the statement into seperate arguments,A
+What operator concatenates two strings?,",",+,/,B
+"In the range function of a for loop in python, is the last number inclusive, exclusive, or other?",Inclusive,Exclusive,Other,B
+What function gives the items stored in a dictionary in python? (Both keys and values in list as tuple.),dict.values(),dictionary.keysandvalues(),dictionary.items(),C
+What is the correct way to declare a class?,def class:,def Class Slope:,class Slope:,C
+Which correctly turns a string (with values seperated by a single white space) into a list?,string.list(),string.split(),string.array(),B
+Are strings mutable or immutable?,Mutable,Immutable,Neither,B
+When does an IndexError exception occur?,When you use an index in the strings range,You use an index out of the strings range, attempting to run without any index,B
+What is the function used to obtain the length of a string?,length(string),len(str),len(string),C
+"In C++, what character does a preprocessor directive begin with?",!,*,#,C
+"In C++, which member function is used to skip one or more characters in the keyboard buffer?",cin.get(),cin.ignore,cin.clear(),B
+"In C++, which formatting command displayes a variable to two decimal places?",cout<<setprecision(2)<<fixed<<var<<endl;,cout<<setprecision(2)<<var<<endl;,cout<<setw(2)<<var<<endl;,A
+"In C++, which member function accepts an argument assigned to the width member variable?",setWidth,getWidth,intWidth,A
+"In bash, what is the command to assign a user 'Tim' to the secondary group 'student'.",$sudo usermod -a -g Tim student,$sudo usermod -a -G student Tim,$sudo usermod -a -G Tim student,B
+"In bash, what file are users recorded in?",/etc/password,/etc/shadow,/etc/group,A
+"In bash, what file are user passwords stored in?",/etc/password,/etc/shadow,/etc/group,B
+In Python what does Pass do?,Pass a value to a function.,Continue the program after an exception is caught.,Terminate a loop.,B
+In HTML what does querySelector() do?,Create a query,Select elements by tag,,B
+What does GPU stand for?,Graphics Processing Unit,Graphics Performance Unit,,A
+How many Megabytes are in a Gigabyte?,2048,500,1024,C
+What does LAN stand for?,Local Arena Network,Light Area Network,Local Area Network,C
+What does DMA stand for? ,Directional Mapping Area,Direct Memory Access,Direct Mainstream Arena ,B
+What is the binary programming language called that computers respond to directly?,Blockchain,Machine Code,Microcosm,B
+True or false: Python is a compiled language?,TRUE,FALSE,,B
+Which is NOT a real operating system?,Windows 8,MacOS,Fedora Linux,C
+How many bits are in a byte?,2,8,10,B
