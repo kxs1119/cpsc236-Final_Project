@@ -19,7 +19,25 @@ def validateId(letterId):
 
 def quiz():
     #Read in random questions into questions dictionary, add questions dictionary in quiz dictionary
-    pass
+    l = []
+    with open(FILENAME, "r") as file:
+        reader = csv.reader(file)
+
+        for row in reader:
+            if row[0] == "Question text":
+                continue
+            elif row[1] == "Option A":
+                continue
+            elif row[2] == "Option B":
+                continue
+            elif row[3] == "Option C":
+                continue
+            elif row[4] == "Correct Answer":
+                continue
+            else:
+                questions[row[0]] = row[1], row[2], row[3], row[4]
+                
+
 
 def displayQuiz():
     # this function should display time elapsed and the current question
@@ -28,6 +46,7 @@ def displayQuiz():
     # it will ask the user for useranswer, store the useranswer in the quiz dictionary
    
     start = time.time()
+    elapsed_time = 0 # variable for elapsed time 
     question_index = 1
     while question_index in quiz and time.time() - start < 600: # type: ignore
         print(f"Question {question_index}: {quiz[question_index]}") # type: ignore
@@ -35,6 +54,7 @@ def displayQuiz():
         userAnswer = input("Enter your answer: ")
         quiz[question_index] = userAnswer # type: ignore
         question_index += 1
+        elapsed_time = time.time() - start
         print(f"Time elapsed: {time.time() - start:.2f} seconds") # type: ignore
         
     return userAnswer # type: ignore
