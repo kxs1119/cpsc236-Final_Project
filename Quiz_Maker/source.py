@@ -1,5 +1,5 @@
 import csv
-import random
+from random import randint
 import time # import time module for elapsing time in quiz
 
 FILENAME = "testbank.csv"
@@ -17,12 +17,11 @@ def validateId(letterId):
     return True
     
 
-def quiz():
-    #Read in random questions into questions dictionary, add questions dictionary in quiz dictionary
-    l = []
+def makeQuiz(numQuestions):
+#Read in random questions into questions dictionary, add questions dictionary in quiz dictionary
     with open(FILENAME, "r") as file:
         reader = csv.reader(file)
-
+        questionCounter = 1
         for row in reader:
             if row[0] == "Question text":
                 continue
@@ -35,7 +34,27 @@ def quiz():
             elif row[4] == "Correct Answer":
                 continue
             else:
-                questions[row[0]] = row[1], row[2], row[3], row[4]
+                ans = []
+                ans.append(row[1])
+                ans.append(row[2])
+                ans.append(row[3])
+                rAns = row[4]
+                questions[str(questionCounter)] = row[0], ans, rAns
+                questionCounter += 1
+
+        #List to hold a list with all question numbers
+        a = []
+        #For loop to assign random question numbers to list a and check for duplicates
+        for i in range(0, numQuestions):
+            num = randint(2, 129)
+            a.append(num)
+            for l in range(0, len(a)):
+                if a[l] == num:
+                    num = randint(2, 129)
+            #Putting the questions in the quiz dictionary
+            quiz[str(i)] = questions[str(num)]
+    #Returning a list with all the question numbers to use as keys for future programs
+    return a
                 
 
 
@@ -49,8 +68,8 @@ def displayQuiz():
     elapsed_time = 0 # variable for elapsed time 
     question_index = 1
     while question_index in quiz and time.time() - start < 600: # type: ignore
-        print(f"Question {question_index}: {quiz[question_index]}") # type: ignore
-        print(f"Options: {quiz[question_index]}") # type: ignore
+        print(f"Question {question_index}: {quiz[question_index][0]}") # type: ignore
+        print(f"Options: {quiz[question_index][1]}") # type: ignore
         userAnswer = input("Enter your answer: ")
         quiz[question_index] = userAnswer # type: ignore
         question_index += 1
@@ -58,6 +77,7 @@ def displayQuiz():
         print(f"Time elapsed: {time.time() - start:.2f} seconds") # type: ignore
         
     return userAnswer # type: ignore
+
 def calculateScore(userAnswer, correctAnswer):
     # this function should calculate the score of the student based on the quiz dictionary
     # it will compare the student answers to the correct answers in the quiz dictionary
@@ -71,9 +91,27 @@ def calculateScore(userAnswer, correctAnswer):
     
     pass
 
-def createStudentFile():
-    # this function should create a new student file with the following columns:
-    # first and last name, student id, score, elapsed time, answers {correct answers , student answers}
-    
-    pass
-
+def createStudentFile(questionNums, firstName, lastName, letterId, numId, score, time, n):
+    textFile = "A" + str(numId) + "_" + lastName + "_" + firstName + ".txt"
+    with open(textFile, "w") as file:
+        #Writing StudentId
+        file.write("Student ID: " + str(letterId) + str(numId))
+        #Writing First+LastName
+        file.write("\nName: " + firstName + lastName)
+        #Writing user's Score
+        file.write("\nScore: " + str(score) + "%")
+        #Writing Elapsed Time
+        file.write("\nElapsed time: " + str(time) + " seconds")
+        
+        #For loop to write out the questions, their correct answer and the student's answer
+        for i in range(0, n):
+            num = questionNums[i]
+        
+            q = quiz[str(i)][0]
+            rightAns = quiz[str(i)][2]
+            #Writing out Question
+            file.write("\nQuestion " + str(i+1) + ": " + str(q))
+            #Writing Student's Answer
+            file.write("\n\tStudent Answer: ") #NEED THE STUDENT'S ANSWER
+            #Writing the Right Answer
+            file.write("\n\tRight Answer: " + rightAns)

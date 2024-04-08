@@ -2,13 +2,14 @@ import source
 
 
 def main():
-    print("Let it begin")
+    print("Welcome to quizmaker!")
     
     firstName = " "
     lastName = " "
     letterId = " "
     numId = " "
     maxIdAttempts = 3
+    questionNums = []
     
     while True:
         print("Please enter your first name:")
@@ -27,8 +28,23 @@ def main():
             if maxIdAttempts == 0:
                 print("You have exceeded the maximum number of attempts")
                 break
+
+        #Getting the number of questions the user will want for their quiz
+        n = int(input("Would you like your quiz to have 10 or 20 questions?: "))
+        while n != 10 and n != 20:
+            n = int(input("Please input 10 or 20 questions: "))
+
+        #Making the quiz for the user
+        questionNums = source.makeQuiz(n)
         
-        
+        #Completing the test
+            #need the test function here
+
+        #Writing the quiz file for the user
+        #Need a variable for scores
+        #Need a variable for the time it took
+        source.createStudentFile(questionNums, firstName, lastName, letterId, numId, score, time, n)
+
         complete_test = input("Would you like to complete the test? (Q/S)").lower()
         # adding redo or quit conditions
         if complete_test == 'q':
