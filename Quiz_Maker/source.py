@@ -6,15 +6,18 @@ FILENAME = "testbank.csv"
 quiz = {} # type: ignore
 questions = {}
 
-def validateId(letterId):
-    # this function should validate the id
+def validateId(id):
+    # this function should validate the id and give the user n attempts to retry to enter
     # it will make sure the first letter is 'A' and the number of digits is 6
-    if len(letterId)!= 6 or letterId[0] != 'A': # type: ignore
+    
+    if len(id)!= 6 and id[0] != 'A': # type: ignore
         return False
-    for element in letterId[1:]:
+    for element in id[1:]:
         if not element.isdigit(): # type: ignore
             return False
-    return True
+        return True
+        
+        
     
 
 def makeQuiz(numQuestions):
@@ -38,8 +41,8 @@ def makeQuiz(numQuestions):
                 ans.append(row[1])
                 ans.append(row[2])
                 ans.append(row[3])
-                rAns = row[4]
-                questions[str(questionCounter)] = row[0], ans, rAns
+                right_answer = row[4] # fixed warning 
+                questions[str(questionCounter)] = row[0], ans, right_answer
                 questionCounter += 1
 
         #List to hold a list with all question numbers
