@@ -37,13 +37,15 @@ def main():
         #Making the quiz for the user
         questionNums = source.makeQuiz(n)
         
-        #Completing the test
-            #need the test function here
 
-        #Writing the quiz file for the user
-        #Need a variable for scores
-        #Need a variable for the time it took
-        source.createStudentFile(questionNums, firstName, lastName, letterId, numId, score, time, n)
+        # Display the quiz to the user
+        source.display_quiz(questionNums)
+        
+        # TODO: Writing the quiz file for the user
+        # TODO: Need a variable for scores
+        # TODO: Need a variable for the time it took
+        
+       # source.createStudentFile(questionNums, firstName, lastName, letterId, numId, score, time, n)
 
         complete_test = input("Would you like to complete the test? (Q/S)").lower()
         # adding redo or quit conditions

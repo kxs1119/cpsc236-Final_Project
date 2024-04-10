@@ -21,8 +21,10 @@ def validateId(id):
     
 
 def makeQuiz(numQuestions):
+    # TODO: Make the dictionary of questions into keys so we can iterate through them 
 #Read in random questions into questions dictionary, add questions dictionary in quiz dictionary
     with open(FILENAME, "r") as file:
+        next(file) # skip the first row or headers
         reader = csv.reader(file)
         questionCounter = 1
         for row in reader:
@@ -46,38 +48,44 @@ def makeQuiz(numQuestions):
                 questionCounter += 1
 
         #List to hold a list with all question numbers
-        a = []
+        chosen_question = []
         #For loop to assign random question numbers to list a and check for duplicates
         for i in range(0, numQuestions):
             num = randint(2, 129)
-            a.append(num)
-            for l in range(0, len(a)):
-                if a[l] == num:
-                    num = randint(2, 129)
+            while num in chosen_question: # needs to be a while loop so that it doesnt duplicate questions
+                num = randint(2, 129)
             #Putting the questions in the quiz dictionary
-            quiz[str(i)] = questions[str(num)]
+            chosen_question.append(num)
+           # quiz[str(i)] = questions[str(num)] 
     #Returning a list with all the question numbers to use as keys for future programs
-    return a
+    return chosen_question # type: ignore
                 
 
 
-def displayQuiz():
+def display_quiz(chosen_question):
     # this function should display time elapsed and the current question
     # this function will take from quiz, display a unique questions one at a time from the quiz dictionary
     # it will also show the options for each question 
     # it will ask the user for useranswer, store the useranswer in the quiz dictionary
-   
+    userAnswer = ""
     start = time.time()
-    elapsed_time = 0 # variable for elapsed time 
-    question_index = 1
-    while question_index in quiz and time.time() - start < 600: # type: ignore
-        print(f"Question {question_index}: {quiz[question_index][0]}") # type: ignore
-        print(f"Options: {quiz[question_index][1]}") # type: ignore
-        userAnswer = input("Enter your answer: ")
-        quiz[question_index] = userAnswer # type: ignore
-        question_index += 1
-        elapsed_time = time.time() - start
-        print(f"Time elapsed: {time.time() - start:.2f} seconds") # type: ignore
+    # index = chosen_question # type: ignore
+    print(chosen_question) # type: ignore
+    for index in range(len(chosen_question)):
+        if time.time() > 600:
+            break
+        else:
+            print(f"Question {chosen_question}: {quiz[chosen_question][0]}") # type: ignore
+            print(f"Options: {quiz[chosen_question][1]}") 
+            userAnswer = input("Enter your answer: ") # type: ignore
+            quiz[chosen_question] = userAnswer # type: ignore
+            question_index += 1
+            elapsed_time = time.time() - start
+            print(f"Time elapsed: {time.time() - start:.2f} seconds") # type: ignore
+        
+    # setting end and elapsed time 
+    end = time.time() 
+    elapsed_time = end - start 
         
     return userAnswer # type: ignore
 
@@ -92,8 +100,7 @@ def calculateScore(userAnswer, correctAnswer):
         
     return score # type: ignore
     
-    pass
-
+    
 def createStudentFile(questionNums, firstName, lastName, letterId, numId, score, time, n):
     textFile = "A" + str(numId) + "_" + lastName + "_" + firstName + ".txt"
     with open(textFile, "w") as file:
