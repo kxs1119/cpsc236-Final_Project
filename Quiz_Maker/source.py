@@ -60,15 +60,12 @@ def display_quiz(chosen_question):
     # this function will take from quiz, display a unique questions one at a time from the quiz dictionary
     # it will also show the options for each question 
     # it will ask the user for useranswer, store the useranswer in the quiz dictionary
-    userAnswer = ""
-    start = time.time()
+    elapsed_time = 0
     # index = chosen_question # type: ignore
-    print(chosen_question) # type: ignore
     for index in range(0, len(chosen_question)):
-        print("working?")
-        #if time.time() > 600:
-            #break
-        #else:
+        
+        start = time.time()
+
         print("\nQuestion " + str(index+1) + ": " + questions[str(chosen_question[index])]["QuestionText"]) # type: ignore
         print("Options: ")
         print("\tA: " + questions[str(chosen_question[index])]["A"])
@@ -84,14 +81,16 @@ def display_quiz(chosen_question):
             "C":questions[str(chosen_question[index])]["C"],
             "rightAnswer":questions[str(chosen_question[index])]["Answer"],
             "userAnswer":userAnswer }# type: ignore
-        #elapsed_time = time.time() - start
-        #print(f"Time elapsed: {time.time() - start:.2f} seconds") # type: ignore
+        
     
     # setting end and elapsed time 
     end = time.time() 
-    elapsed_time = end - start 
-        
-    return userAnswer # type: ignore
+    elapsed_time = float(end - start)
+    elapsed_time = round(elapsed_time,2) 
+    
+    print(f"Time elapsed: {elapsed_time:.2f} seconds") # type: ignore
+   
+    return userAnswer,elapsed_time # type: ignore
 
 def calculateScore(totalQuestions):
     # this function should calculate the score of the student based on the quiz dictionary
@@ -107,7 +106,7 @@ def calculateScore(totalQuestions):
     return grade # type: ignore
     
     
-def createStudentFile(questionNums, firstName, lastName, letterId, score, time, numQuestions):
+def createStudentFile(firstName, lastName, letterId, score, elapsed_time, numQuestions):
     textFile = str(letterId) + "_" + lastName + "_" + firstName + ".txt"
     with open(textFile, "w") as file:
         #Writing StudentId
@@ -117,7 +116,7 @@ def createStudentFile(questionNums, firstName, lastName, letterId, score, time, 
         #Writing user's Score
         file.write("\nScore: " + str(score) + "%")
         #Writing Elapsed Time
-        file.write("\nElapsed time: " + str(time) + " seconds\n")
+        file.write("\nElapsed time: " + str(elapsed_time[1]) + " seconds\n")
         
         #For loop to write out the questions, their correct answer and the student's answer
         for i in range(0, numQuestions):
