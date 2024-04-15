@@ -1,10 +1,18 @@
 # DONKEY KONG REBUILD IN PYTHON WITH THE PYGAME MODULE! (Est.720 Lines of Code)
 import os
 import random
-import pygame
+import pygame 
+from pygame import mixer
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'  # call before pygame.init()
 pygame.init()
+bgm_on = True # created a boolean variable to control the background music
+if bgm_on:
+    # Background Sound
+    mixer.music.load('assets/sounds/bgm.mp3')
+    mixer.music.play(-1)
+else:
+    mixer.music.stop()
 info = pygame.display.Info()
 screen_width, screen_height = info.current_w, info.current_h
 window_width, window_height = screen_width - 800, screen_height - 150
@@ -604,7 +612,6 @@ def check_victory():
     target_rect = pygame.rect.Rect((target[0]*section_width, target[1]), (section_width*target[2], 1))
     return player.bottom.colliderect(target_rect)
 
-
 barrels = pygame.sprite.Group()
 flames = pygame.sprite.Group()
 hammers = pygame.sprite.Group()
@@ -617,13 +624,14 @@ run = True
 while run:
     screen.fill('black')
     timer.tick(fps)
+    
     if counter < 60:
         counter += 1
     else:
         counter = 0
         if bonus > 0:
             bonus -= 100
-
+            
     # draw platforms and ladders on the screen in dedicated function
     plats, lads = draw_screen()
     oil_drum = draw_extras()
@@ -667,13 +675,16 @@ while run:
     reset_game = barrel_collide(reset_game)
     if reset_game:
         if lives > 0:
+            mario_death_music = mixer.Sound('assets/sounds/game-over-sound.mp3')
+            bgm_on = False #
+            mario_death_music.play()
             reset()
             reset_game = False
         else:
             run = False
 
-    for event in pygame.event.get():    # event handler for pygame
-        if event.type == pygame.QUIT:
+    for event in pygame.event.get():  # event handler for pygame
+        if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]: # added the ability to quit with esc key
             run = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT and not player.climbing:
@@ -682,6 +693,11 @@ while run:
             if event.key == pygame.K_LEFT and not player.climbing:
                 player.x_change = -1
                 player.dir = -1
+            if event.key == pygame.K_SPACE:
+                jump_sound = mixer.Sound('assets/sounds/mario-jump-sound.mp3')
+                jump_sound.set_volume(0.05)
+                jump_sound.play()
+                jump_sound.fadeout(1000)
             if event.key == pygame.K_SPACE and player.landed:
                 player.landed = False
                 player.y_change = -6
@@ -711,6 +727,8 @@ while run:
                 if player.climbing and player.landed:
                     player.climbing = False
     if victory:
+        # TODO: add victory sound
+        # victory_sound = mixer.Sound('assets/sounds/victory.mp3')
         screen.blit(font.render('VICTORY!', True, 'white'), (window_width/2, window_height/2))
         reset_game = True
         # active_level += 1
