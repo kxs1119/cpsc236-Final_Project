@@ -1,15 +1,11 @@
+from queue import Full
 import source
-
+import time 
 
 def main():
     print("Welcome to quizmaker!")
+    print()
     
-    firstName = " "
-    lastName = " "
-    letterId = " "
-    numId = " "
-    maxIdAttempts = 3
-    questionNums = []
     FILENAME = "testbank.csv"
     
     while True:
@@ -30,22 +26,25 @@ def main():
             
 
         #Getting the number of questions the user will want for their quiz
-        n = int(input("Would you like your quiz to have 10 or 20 questions?: "))
-        while n != 10 and n != 20:
-            n = int(input("Please input 10 or 20 questions: "))
+        numQuestions = int(input("Would you like your quiz to have 10 or 20 questions?: "))
+        while numQuestions != 10 and numQuestions != 20:
+            numQuestions = int(input("Please input 10 or 20 questions: "))
     
         #Making the quiz for the user
-        questionNums = source.makeQuiz(n)
+        
+        questionNums = source.makeQuiz(numQuestions)
+        
+        # Display the quiz to the user and get the elapsed time
+        elapsed_time = source.display_quiz(questionNums)
         
 
-        # Display the quiz to the user
-        source.display_quiz(questionNums)
+        # Creating variable for elapsed time
+        score = round(source.calculateScore(numQuestions),1)
+        print(f"Score: {score}%")
+        
         
         # TODO: Writing the quiz file for the user
-        # TODO: Need a variable for scores
-        # TODO: Need a variable for the time it took
-        
-       # source.createStudentFile(questionNums, firstName, lastName, letterId, numId, score, time, n)
+        source.createStudentFile(firstName, lastName, letterId, score, elapsed_time, numQuestions)
 
         complete_test = input("Would you like to complete the test? (Q/S)").lower()
         # adding redo or quit conditions
@@ -56,6 +55,7 @@ def main():
             print("We will now begin the another test!")
         else:
             print("Please enter either Q or S")
-        
+            
+    
 if __name__ == "__main__":
     main()
