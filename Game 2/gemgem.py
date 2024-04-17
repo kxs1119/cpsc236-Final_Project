@@ -3,6 +3,15 @@
 # http://inventwithpython.com/pygame
 # Released under a "Simplified BSD" license
 
+#CHANGES
+#ADDING BACKGROUND MUSIC
+#ADDING ANOTHER GEM
+#MAYBE ADD A COMBO THING
+
+#TODO: 
+#Luke: ADDING BACKGROUND MUSIC, ADDING NEW SPRITES, INCREASING TABLE SIZE
+#Kenny: 
+
 """
 This program has "gem data structures", which are basically dictionaries
 with the following keys:
@@ -19,20 +28,24 @@ import random, time, pygame, sys, copy
 from pygame.locals import *
 
 FPS = 30 # frames per second to update the screen
-WINDOWWIDTH = 600  # width of the program's window, in pixels
-WINDOWHEIGHT = 600 # height in pixels
+#CHANGED THE WIDTH AND HEIGHT OF THE WINDOW TO BE ABLE TO APPLY MORE COLUMNS AND ROWS
+WINDOWWIDTH = 900  # width of the program's window, in pixels
+WINDOWHEIGHT = 650 # height in pixels
 
-BOARDWIDTH = 8 # how many columns in the board
-BOARDHEIGHT = 8 # how many rows in the board
+#CHANGING THE WIDTH AND HEIGH OF BOARD, ADDING NEW COLUMNS AND ROWS
+BOARDWIDTH = 14 # how many columns in the board
+BOARDHEIGHT = 9 # how many rows in the board
 GEMIMAGESIZE = 64 # width & height of each space in pixels
 
 # NUMGEMIMAGES is the number of gem types. You will need .png image
 # files named gem0.png, gem1.png, etc. up to gem(N-1).png.
-NUMGEMIMAGES = 7
+#CHANGED -> changed number of images to 9 (ORIGINALLY 7)
+NUMGEMIMAGES = 9
 assert NUMGEMIMAGES >= 5 # game needs at least 5 types of gems to work
 
 # NUMMATCHSOUNDS is the number of different sounds to choose from when
 # a match is made. The .wav files are named match0.wav, match1.wav, etc.
+#CHANGED: SOUND FILES TO FIT THE FANTASY THEME
 NUMMATCHSOUNDS = 6
 
 MOVERATE = 25 # 1 to 100, larger num means faster animations
@@ -45,12 +58,15 @@ BLUE      = (  0,   0, 255)
 RED       = (255, 100, 100)
 BLACK     = (  0,   0,   0)
 BROWN     = ( 85,  65,   0)
+#CHANGED: Added these two extra colors to change the board and gridlines
+GREEN     = ( 82,  94,   43)
+LBROWN    = ( 50,  35,   26)
 HIGHLIGHTCOLOR = PURPLE # color of the selected gem's border
-BGCOLOR = LIGHTBLUE # background color on the screen
-GRIDCOLOR = BLUE # color of the game board
+BGCOLOR = GREEN # background color on the screen
+GRIDCOLOR = LBROWN # color of the game board
 GAMEOVERCOLOR = RED # color of the "Game over" text.
 GAMEOVERBGCOLOR = BLACK # background color of the "Game over" text.
-SCORECOLOR = BROWN # color of the text for the player's score
+SCORECOLOR = BLACK # color of the text for the player's score
 
 # The amount of space to the sides of the board to the edge of the window
 # is used several times, so calculate it once here and store in variables.
@@ -70,15 +86,17 @@ def main():
     global FPSCLOCK, DISPLAYSURF, GEMIMAGES, GAMESOUNDS, BASICFONT, BOARDRECTS
 
     # Initial set up.
+    #Setting up the size of the window, font, window name and the time
     pygame.init()
     FPSCLOCK = pygame.time.Clock()
-    DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+    DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), pygame.RESIZABLE)
     pygame.display.set_caption('Gemgem')
     BASICFONT = pygame.font.Font('freesansbold.ttf', 36)
 
     # Load the images
     GEMIMAGES = []
     for i in range(1, NUMGEMIMAGES+1):
+        #Loading the image 
         gemImage = pygame.image.load('gem%s.png' % i)
         if gemImage.get_size() != (GEMIMAGESIZE, GEMIMAGESIZE):
             gemImage = pygame.transform.smoothscale(gemImage, (GEMIMAGESIZE, GEMIMAGESIZE))
@@ -109,7 +127,10 @@ def main():
 
 def runGame():
     # Plays through a single game. When the game is over, this function returns.
-
+    #CHANGE: Adding background music to the gemgem game, stops when the game is over
+    pygame.mixer.init()
+    pygame.mixer.music.load("lotrBackground.wav")
+    pygame.mixer.music.play(-1, 0.0)
     # initalize the board
     gameBoard = getBlankBoard()
     score = 0
