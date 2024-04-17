@@ -1,0 +1,7 @@
+This is Fantasy Gemgem, a modified version of Gemgem that has fantasy themed background music, sprites, and sound effects. It also has a larger grid compared to the original, increasing the width and length of the window itself as well. The game was also changed to be reziable instead of a set. There are also two new "gems", which greatly alters the gameplay as more sprites lessens the likelihood of 3 of a kinds and provokes a more strategic way of planning ahead. The colors and backgrounds were changed as well to fit the fantasy theme more, going from a light and dark blue to a green and dark brown. Audio files were changed from its normal sounds to fantasy sound effects along with a slight nod to my favorite fantasy movie when you make a bad swap. 
+
+To run the code, make sure you have the required sound and image assets including badswap.wav, gem1-9, lotrBackground.wav, and match0-5.wav
+
+Simply run (preferably in VS code) to have the window open and the game begins!
+
+Gemgem is a matching game so you have to get 3 or 4 of a kind to match, scoring points with each match. Your score slowly ticks down by the second so the trick to getting a high schore is to get as many matches as possible in the shortest amount of time possible. However, if the grid finds not matches avaiable, you lose and have to restart the game. With the extra 2 sprites added, it makes matching a little more tricky and requires more thinking ahead then a usual game of gemgem.

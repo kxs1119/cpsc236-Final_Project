@@ -3,14 +3,13 @@
 # http://inventwithpython.com/pygame
 # Released under a "Simplified BSD" license
 
-#CHANGES
-#ADDING BACKGROUND MUSIC
-#ADDING ANOTHER GEM
-#MAYBE ADD A COMBO THING
-
-#TODO: 
-#Luke: ADDING BACKGROUND MUSIC, ADDING NEW SPRITES, INCREASING TABLE SIZE
-#Kenny: 
+#CHANGES:
+    #FANTASY THEME SWAP
+    #ADDING BACKGROUND MUSIC
+    #ADDING ANOTHER GEM
+    #CHANGING BACKGROUND COLOR
+    #CHANGING GRID COLOR
+    #ADDING MORE COLUMNS AND ROWS
 
 """
 This program has "gem data structures", which are basically dictionaries
@@ -61,6 +60,7 @@ BROWN     = ( 85,  65,   0)
 #CHANGED: Added these two extra colors to change the board and gridlines
 GREEN     = ( 82,  94,   43)
 LBROWN    = ( 50,  35,   26)
+
 HIGHLIGHTCOLOR = PURPLE # color of the selected gem's border
 BGCOLOR = GREEN # background color on the screen
 GRIDCOLOR = LBROWN # color of the game board
@@ -87,41 +87,41 @@ def main():
 
     # Initial set up.
     #Setting up the size of the window, font, window name and the time
-    pygame.init()
-    FPSCLOCK = pygame.time.Clock()
-    DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), pygame.RESIZABLE)
-    pygame.display.set_caption('Gemgem')
-    BASICFONT = pygame.font.Font('freesansbold.ttf', 36)
+    pygame.init() # Initialize the Pygame library
+    FPSCLOCK = pygame.time.Clock() # Initialize the clock for frame rate control
+    DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), pygame.RESIZABLE) # Set up the display surface
+    pygame.display.set_caption('Fantasy Gemgem') # CHANGED: Set the window title to Fantasy Gemgem
+    BASICFONT = pygame.font.Font('freesansbold.ttf', 36) # Initialize the basic font
+
 
     # Load the images
-    GEMIMAGES = []
+    GEMIMAGES = [] # Initialize the list to hold the gem images
     for i in range(1, NUMGEMIMAGES+1):
-        #Loading the image 
+        #Loading the image of the gem (item)
         gemImage = pygame.image.load('gem%s.png' % i)
         if gemImage.get_size() != (GEMIMAGESIZE, GEMIMAGESIZE):
             gemImage = pygame.transform.smoothscale(gemImage, (GEMIMAGESIZE, GEMIMAGESIZE))
-        GEMIMAGES.append(gemImage)
+        GEMIMAGES.append(gemImage) # Adding the image to the list
 
     # Load the sounds.
     GAMESOUNDS = {}
-    GAMESOUNDS['bad swap'] = pygame.mixer.Sound('badswap.wav')
-    GAMESOUNDS['match'] = []
+    GAMESOUNDS['bad swap'] = pygame.mixer.Sound('badswap.wav') # Initialize the sound for a bad swap
+    GAMESOUNDS['match'] = [] # Initialize the list to hold the match sounds
     for i in range(NUMMATCHSOUNDS):
-        GAMESOUNDS['match'].append(pygame.mixer.Sound('match%s.wav' % i))
+        GAMESOUNDS['match'].append(pygame.mixer.Sound('match%s.wav' % i)) # Loading the sounds for a match
 
-    # Create pygame.Rect objects for each board space to
-    # do board-coordinate-to-pixel-coordinate conversions.
-    BOARDRECTS = []
-    for x in range(BOARDWIDTH):
-        BOARDRECTS.append([])
-        for y in range(BOARDHEIGHT):
-            r = pygame.Rect((XMARGIN + (x * GEMIMAGESIZE),
-                             YMARGIN + (y * GEMIMAGESIZE),
-                             GEMIMAGESIZE,
-                             GEMIMAGESIZE))
-            BOARDRECTS[x].append(r)
+    # Create pygame.Rect objects for each board space to do board-coordinate-to-pixel-coordinate conversions.
+    BOARDRECTS = [] # Initialize the list to hold the board rectangles
+    for x in range(BOARDWIDTH): # Loop through the range of board width.
+        BOARDRECTS.append([]) # Append an empty list to the list of board rectangles.
+        for y in range(BOARDHEIGHT): # Loop through the range of board height.
+            r = pygame.Rect((XMARGIN + (x * GEMIMAGESIZE), # Create a rectangle with the top-left corner at the specified coordinates.
+                             YMARGIN + (y * GEMIMAGESIZE), # and the bottom-right corner at the specified coordinates.
+                             GEMIMAGESIZE, # and the width equal to the gem size.
+                             GEMIMAGESIZE)) # and the height equal to the gem size.
+            BOARDRECTS[x].append(r) # Append the rectangle to the list of board rectangles.
 
-    while True:
+    while True: # Running the game
         runGame()
 
 
@@ -130,6 +130,8 @@ def runGame():
     #CHANGE: Adding background music to the gemgem game, stops when the game is over
     pygame.mixer.init()
     pygame.mixer.music.load("lotrBackground.wav")
+    # Fixing volume of background music
+    pygame.mixer.music.set_volume(0.3)
     pygame.mixer.music.play(-1, 0.0)
     # initalize the board
     gameBoard = getBlankBoard()
