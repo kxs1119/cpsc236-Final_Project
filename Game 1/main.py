@@ -2,17 +2,21 @@
 import os
 import random
 import pygame 
-from pygame import mixer
+from pygame import mixer #! Kenny added this
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'  # call before pygame.init()
 pygame.init()
-bgm_on = True # created a boolean variable to control the background music
-if bgm_on:
-    # Background Sound
-    mixer.music.load('assets/sounds/bgm.mp3')
-    mixer.music.play(-1)
-else:
-    mixer.music.stop()
+pygame.mixer.init() # initialize mixer
+
+pygame.mixer.music.load('assets/sounds/bgm.mp3')
+game_over = pygame.mixer.Sound('assets/sounds/game-over-sound.mp3')
+victory_sound = pygame.mixer.Sound('assets/sounds/victory_music.mp3')
+hammer_time = pygame.mixer.Sound('assets/sounds/hammer.mp3')
+replay_music = pygame.mixer.Sound('assets/sounds/bgm.mp3')
+
+
+mixer.music.play(-1)
+
 info = pygame.display.Info()
 screen_width, screen_height = info.current_w, info.current_h
 window_width, window_height = screen_width - 800, screen_height - 150
@@ -252,6 +256,13 @@ class Hammer(pygame.sprite.Sprite):
                 player.hammer = True
                 player.hammer_len = player.max_hammer
                 self.used = True
+                while self.used is True:
+                    pygame.mixer.Sound.play(hammer_time,0,7500)
+                    break
+                
+                
+            
+                
 
 
 class Barrel(pygame.sprite.Sprite):
@@ -588,12 +599,17 @@ def barrel_collide(reset):
 def reset():
     global player, barrels, flames, hammers, first_fireball_trigger, victory, lives, bonus
     global barrel_spawn_time, barrel_count
-    pygame.time.delay(1000)
+    mixer.music.stop()
+    pygame.mixer.Sound.play(game_over) # Kenny: added sound to play game over sound
+    pygame.time.delay(4000) # Kenny: added delay to play game over sound
     for bar in barrels:
+        mixer.music.play(-1)
         bar.kill()
     for flam in flames:
+        mixer.music.play(-1)
         flam.kill()
     for hams in hammers:
+        mixer.music.play(-1)
         hams.kill()
     for hams in hammers_list:
         hammers.add(Hammer(*hams))
@@ -671,13 +687,9 @@ while run:
     player.draw()
     for ham in hammers:
         ham.draw()
-
     reset_game = barrel_collide(reset_game)
     if reset_game:
         if lives > 0:
-            mario_death_music = mixer.Sound('assets/sounds/game-over-sound.mp3')
-            bgm_on = False #
-            mario_death_music.play()
             reset()
             reset_game = False
         else:
@@ -694,10 +706,10 @@ while run:
                 player.x_change = -1
                 player.dir = -1
             if event.key == pygame.K_SPACE:
-                jump_sound = mixer.Sound('assets/sounds/mario-jump-sound.mp3')
-                jump_sound.set_volume(0.05)
-                jump_sound.play()
-                jump_sound.fadeout(1000)
+                jump_sound = mixer.Sound('assets/sounds/mario-jump-sound.mp3') # Kenny 
+                jump_sound.set_volume(0.1)  # Kenny
+                jump_sound.play() # Kenny
+                jump_sound.fadeout(1000) # Kenny
             if event.key == pygame.K_SPACE and player.landed:
                 player.landed = False
                 player.y_change = -6
@@ -727,8 +739,9 @@ while run:
                 if player.climbing and player.landed:
                     player.climbing = False
     if victory:
-        # TODO: add victory sound
-        # victory_sound = mixer.Sound('assets/sounds/victory.mp3')
+        # TODO: add victory sound]
+        pygame.mixer.music.stop()
+        pygame.mixer.Sound.play(victory_sound,0,500)
         screen.blit(font.render('VICTORY!', True, 'white'), (window_width/2, window_height/2))
         reset_game = True
         # active_level += 1
