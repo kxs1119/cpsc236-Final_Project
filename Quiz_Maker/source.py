@@ -8,7 +8,7 @@ questions = {}
 
 def validateId(id):
     # this function should validate the id and give the user n attempts to retry to enter
-    # it will make sure the first letter is 'A' and the number of digits is 6
+    # it will make sure the first letter is 'A' and the number of digits is 6 (Kenny)
     
     if len(id)!= 6 and id[0] != 'A': # type: ignore
         return False
@@ -17,9 +17,9 @@ def validateId(id):
             return False
         return True
 
-def makeQuiz(numQuestions):
-    # TODO: Make the dictionary of questions into keys so we can iterate through them 
-#Read in random questions into questions dictionary, add questions dictionary in quiz dictionary
+#Creates the question dictionary to read in information from testbank.csv and returns a list of all the 
+#random questions for the quiz dictionary (Luke)
+def makeQuestions(numQuestions):
     with open(FILENAME, "r") as file:
         reader = csv.reader(file)
         questionCounter = 1
@@ -59,7 +59,7 @@ def display_quiz(chosen_question):
     # this function should display time elapsed and the current question
     # this function will take from quiz, display a unique questions one at a time from the quiz dictionary
     # it will also show the options for each question 
-    # it will ask the user for useranswer, store the useranswer in the quiz dictionary
+    # it will ask the user for useranswer, store the useranswer in the quiz dictionary (Kenny)
     elapsed_time = 0
     # index = chosen_question # type: ignore
     for index in range(0, len(chosen_question)):
@@ -92,6 +92,7 @@ def display_quiz(chosen_question):
    
     return userAnswer,elapsed_time # type: ignore
 
+#Function that calculates the score of the student based on the quiz dictionary (Kenny)
 def calculateScore(totalQuestions):
     # this function should calculate the score of the student based on the quiz dictionary
     # it will compare the student answers to the correct answers in the quiz dictionary
@@ -106,7 +107,8 @@ def calculateScore(totalQuestions):
     return grade # type: ignore
     
     
-def createStudentFile(firstName, lastName, letterId, score, elapsed_time, numQuestions):
+#Function that creates the quiz file for the user (Luke)
+def createStudentFile(firstName, lastName, letterId, score, elapsed_time, numQuestions): 
     textFile = str(letterId) + "_" + lastName + "_" + firstName + ".txt"
     with open(textFile, "w") as file:
         #Writing StudentId
