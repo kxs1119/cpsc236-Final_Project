@@ -98,17 +98,17 @@ def main():
     GEMIMAGES = [] # Initialize the list to hold the gem images
     for i in range(1, NUMGEMIMAGES+1):
         #Loading the image of the gem (item)
-        gemImage = pygame.image.load('gem%s.png' % i)
+        gemImage = pygame.image.load('Game 2/assets/gem%s.png' % i)
         if gemImage.get_size() != (GEMIMAGESIZE, GEMIMAGESIZE):
             gemImage = pygame.transform.smoothscale(gemImage, (GEMIMAGESIZE, GEMIMAGESIZE))
         GEMIMAGES.append(gemImage) # Adding the image to the list
 
     # Load the sounds.
     GAMESOUNDS = {}
-    GAMESOUNDS['bad swap'] = pygame.mixer.Sound('badswap.wav') # Initialize the sound for a bad swap
+    GAMESOUNDS['bad swap'] = pygame.mixer.Sound('Game 2/sounds/badswap.wav') # Initialize the sound for a bad swap
     GAMESOUNDS['match'] = [] # Initialize the list to hold the match sounds
     for i in range(NUMMATCHSOUNDS):
-        GAMESOUNDS['match'].append(pygame.mixer.Sound('match%s.wav' % i)) # Loading the sounds for a match
+        GAMESOUNDS['match'].append(pygame.mixer.Sound('Game 2/sounds/match%s.wav' % i)) # Loading the sounds for a match
 
     # Create pygame.Rect objects for each board space to do board-coordinate-to-pixel-coordinate conversions.
     BOARDRECTS = [] # Initialize the list to hold the board rectangles
@@ -129,7 +129,7 @@ def runGame():
     # Plays through a single game. When the game is over, this function returns.
     #CHANGE: Adding background music to the gemgem game, stops when the game is over
     pygame.mixer.init()
-    pygame.mixer.music.load("lotrBackground.wav")
+    pygame.mixer.music.load("Game 2/sounds/lotrBackground.wav")
     # Fixing volume of background music
     pygame.mixer.music.set_volume(0.3)
     pygame.mixer.music.play(-1, 0.0)
